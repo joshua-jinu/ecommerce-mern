@@ -1,7 +1,15 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
 
 function Signup() {
+  const {register, handleSubmit, reset, formState} = useForm();
+  const {errors} = formState;
+
+  async function onSubmit(data){
+    console.log(data)
+  }
+
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -11,7 +19,7 @@ function Signup() {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form action="#" method="POST" className="space-y-6">
+        <form action="#" onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div>
             <label htmlFor="name" className="block text-sm/6 font-medium text-gray-900">
               Name
@@ -21,10 +29,10 @@ function Signup() {
                 id="name"
                 name="name"
                 type="text"
-                required
                 autoComplete="name"
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-              />
+                {...register('name', {required: "this field is required"})}
+                />
             </div>
           </div>
           <div>
@@ -32,14 +40,15 @@ function Signup() {
               Email address
             </label>
             <div className="mt-2">
+              {errors.email?.message}
               <input
                 id="email"
                 name="email"
                 type="email"
-                required
                 autoComplete="email"
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-              />
+                {...register('email', {required: "this field is required"})}
+                />
             </div>
           </div>
 
@@ -50,14 +59,15 @@ function Signup() {
               </label>
             </div>
             <div className="mt-2">
+              {errors.password?.message}
               <input
                 id="password"
                 name="password"
                 type="password"
-                required
                 autoComplete="new password"
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-              />
+                {...register('password', {required: "this field is required"})}
+                />
             </div>
           </div>
           <div>
@@ -67,13 +77,14 @@ function Signup() {
               </label>
             </div>
             <div className="mt-2">
+              {errors.confirmPassword?.message}
               <input
                 id="confirm-password"
                 name="confirm-password"
                 type="password"
-                required
                 autoComplete="confirm password"
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                {...register('confirmPassword', {required: "this field is required"})}
               />
             </div>
           </div>

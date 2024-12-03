@@ -1,7 +1,16 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
+import {useForm} from 'react-hook-form'
 
 function Login() {
+
+  const {register, reset, handleSubmit, formState} = useForm();
+  const {errors} = formState;
+
+  const onSubmit = async (data) =>{
+    console.log(data)
+  } 
+
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -11,8 +20,9 @@ function Login() {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form action="#" method="POST" className="space-y-6">
+        <form action="#" onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div>
+            <p>{errors.email?.message}</p>
             <label htmlFor="email" className="block text-sm/6 font-medium text-gray-900">
               Email address
             </label>
@@ -24,7 +34,8 @@ function Login() {
                 required
                 autoComplete="email"
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-              />
+                {...register('email', {required: "This field is required."})}
+                />
             </div>
           </div>
 
@@ -40,13 +51,14 @@ function Login() {
               </div>
             </div>
             <div className="mt-2">
+              <p>{errors.password?.message}</p>
               <input
                 id="password"
                 name="password"
                 type="password"
-                required
                 autoComplete="current-password"
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                {...register('password', {required: "This field is required."})}
               />
             </div>
           </div>
