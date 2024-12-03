@@ -46,3 +46,11 @@ mern-ecommerce/
 2. Install dependencies
 3. Configure environment variables
 4. Run the application
+
+## Milestones
+
+1. Added README file
+2. Milestone 2
+   - created frontend using vite
+   - added and configured tailwind css
+   - created backend file structure
