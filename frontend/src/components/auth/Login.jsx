@@ -4,7 +4,7 @@ import {useForm} from 'react-hook-form'
 
 function Login() {
 
-  const {register, handleSubmit, reset, formState} = useForm();
+  const {register, reset, handleSubmit, formState} = useForm();
   const {errors} = formState;
 
   const onSubmit = async (data) =>{
@@ -22,7 +22,7 @@ function Login() {
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form action="#" onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div>
-            <p>{errors.email}</p>
+            <p>{errors.email?.message}</p>
             <label htmlFor="email" className="block text-sm/6 font-medium text-gray-900">
               Email address
             </label>
@@ -51,12 +51,11 @@ function Login() {
               </div>
             </div>
             <div className="mt-2">
-              <p>{errors.password}</p>
+              <p>{errors.password?.message}</p>
               <input
                 id="password"
                 name="password"
                 type="password"
-                required
                 autoComplete="current-password"
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 {...register('password', {required: "This field is required."})}

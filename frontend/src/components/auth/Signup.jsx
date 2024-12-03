@@ -29,7 +29,6 @@ function Signup() {
                 id="name"
                 name="name"
                 type="text"
-                required
                 autoComplete="name"
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 {...register('name', {required: "this field is required"})}
@@ -41,12 +40,11 @@ function Signup() {
               Email address
             </label>
             <div className="mt-2">
-              {errors.email}
+              {errors.email?.message}
               <input
                 id="email"
                 name="email"
                 type="email"
-                required
                 autoComplete="email"
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 {...register('email', {required: "this field is required"})}
@@ -61,12 +59,11 @@ function Signup() {
               </label>
             </div>
             <div className="mt-2">
-              {errors.password}
+              {errors.password?.message}
               <input
                 id="password"
                 name="password"
                 type="password"
-                required
                 autoComplete="new password"
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 {...register('password', {required: "this field is required"})}
@@ -80,12 +77,11 @@ function Signup() {
               </label>
             </div>
             <div className="mt-2">
-              {errors.confirmPassword}
+              {errors.confirmPassword?.message}
               <input
                 id="confirm-password"
                 name="confirm-password"
                 type="password"
-                required
                 autoComplete="confirm password"
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 {...register('confirmPassword', {required: "this field is required"})}
