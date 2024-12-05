@@ -54,3 +54,8 @@ mern-ecommerce/
    - created frontend using vite
    - added and configured tailwind css
    - created backend file structure
+3. Milestone 3
+   - added express, mongoose, nodemon, dotenv
+   - created .env file with credentials and port
+   - created an express server
+   - connected to MongoDB cluster
