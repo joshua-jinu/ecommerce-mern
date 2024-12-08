@@ -59,3 +59,7 @@ mern-ecommerce/
    - created .env file with credentials and port
    - created an express server
    - connected to MongoDB cluster
+4. Milestone 4
+   - added User model
+   - Added user controller
+   - Configured and enabled multer for uploads
