@@ -38,7 +38,7 @@ export const Validate = {
     validateEmail: (email)=>{
         const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if(email.length>256){
-            return {isValid: false, error:"Email is too long"};
+            return "Email is too long";
         }
         if(!emailRegex.test(email)){
             return "Enter a valid email";
