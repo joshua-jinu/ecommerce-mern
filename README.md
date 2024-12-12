@@ -63,3 +63,7 @@ mern-ecommerce/
    - added User model
    - Added user controller
    - Configured and enabled multer for uploads
+5. Milestone 5:
+   - added Routing to /signup & /login
+   - created validation object using RegEx
+   - added Form validation
