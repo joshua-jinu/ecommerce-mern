@@ -67,3 +67,10 @@ mern-ecommerce/
    - added Routing to /signup & /login
    - created validation object using RegEx
    - added Form validation
+6. Milestone 6:
+   - added nodemailer
+   - created transporter function for sending mails
+   - sent email using transporter function
+   - generate token for each create-user POST request
+   - created verify user function using JWT
+   - create endpoint to authenticate user and return response
