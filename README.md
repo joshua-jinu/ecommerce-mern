@@ -74,3 +74,14 @@ mern-ecommerce/
    - generate token for each create-user POST request
    - created verify user function using JWT
    - create endpoint to authenticate user and return response
+7. Milestone 7:
+   - Created /signup and /login endpoints
+   - Signup functionality
+     - accept data from req.body
+     - return response with message that the user us already present if the email is already there in the db.
+     - if the user is not there, hash the password using bcrypt and create a user in the db with the name, email and the hashed password.
+   - Login functionality
+     - if the user is not present, return response saying the user is not present
+     - if the user is present, authenticate the password using brcypt.compare
+       - if password is incorrect, return error response message
+       - if the password is correct, create token and authenticate the user. add the token to the cookies so that the user stays logged in.
