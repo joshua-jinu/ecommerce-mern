@@ -11,6 +11,6 @@ if(process.env.NODE_ENV!=='PRODUCTION'){
 const PORT = process.env.PORT || 8080;
 
 const server = app.listen(PORT, async ()=>{
-    connectDB();
+    connectDB()
     console.log(`Server Listening on ${PORT}`)
 })

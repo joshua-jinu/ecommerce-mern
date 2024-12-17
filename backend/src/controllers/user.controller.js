@@ -92,14 +92,15 @@ export const signup = async (req, res) => {
                 if(err){
                     return res.status(403).send({message: 'Please Enter'})
                 }
-                await new User.create({
+                const newUser = await User({
                     name: name,
                     email,
                     password: hash,
                 })
+                await newUser.save();
                 return res.status(201).send({success: true, message: "User Created Successfully"});
             }catch(err){
-                return res.status(500).send({success: false, message: "User Created Successfully"});
+                return res.status(500).send({success: false, message: `Error in User creation: ${err.message}`});
             }
         });
     }catch(err){
@@ -131,4 +132,9 @@ export const login = async (req, res)=>{
     }catch(err){
         return res.status(403).send({success: false, message: err.message});
     }
+}
+
+export const fetchUsers = async (req, res) => {
+    const users = await User.find({});
+    return res.status(200).send({success:true, message: users})
 }
