@@ -85,3 +85,7 @@ mern-ecommerce/
      - if the user is present, authenticate the password using brcypt.compare
        - if password is incorrect, return error response message
        - if the password is correct, create token and authenticate the user. add the token to the cookies so that the user stays logged in.
+8. Milestone 8:
+   - Added Card component in frontend.
+   - Added flexbox layout in homepage to show all product cards in a responsive manner.
+   - Mapped dummy product data to Card component in Home.jsx.
