@@ -89,3 +89,6 @@ mern-ecommerce/
    - Added Card component in frontend.
    - Added flexbox layout in homepage to show all product cards in a responsive manner.
    - Mapped dummy product data to Card component in Home.jsx.
+9. Milestone 9:
+   - Created the form for the products with the required fields
+   - form with product title, description, price, discounted price, category and rating
