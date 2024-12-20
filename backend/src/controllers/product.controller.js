@@ -1,9 +1,7 @@
 import mongoose from "mongoose";
-import Product from "../models/product.model";
+import Product from "../models/product.model.js";
 import multer from "multer";
 import fs from 'fs';
-import os from 'os';
-import productModel from "../models/product.model.js";
 
 export const createProductController = async (req, res) =>{
     const {title,
@@ -26,7 +24,7 @@ export const createProductController = async (req, res) =>{
         
 
         const dataImages = await Promise.all(arrayImage);
-        const newProduct = await productModel.create({
+        const newProduct = await Product.create({
             title,
             description,
             discountedPrice,
