@@ -11,6 +11,8 @@ cloudinary.config({
     api_key: process.env.API_KEY, 
     api_secret: process.env.API_SECRET_KEY // Click 'View API Keys' above to copy your API secret
 });
+
+export default cloudinary;
 // (async function() {
 
 //     // Configuration

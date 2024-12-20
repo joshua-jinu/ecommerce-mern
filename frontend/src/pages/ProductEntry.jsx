@@ -3,7 +3,7 @@ import axios from "axios";
 
 function ProductEntry() {
   const [data, setData] = useState({
-    name: "",
+    title: "",
     description: "",
     discountedPrice: 0,
     price: 0,
@@ -31,7 +31,7 @@ function ProductEntry() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const {
-      name,
+      title,
       description,
       discountedPrice,
       price,
@@ -41,7 +41,7 @@ function ProductEntry() {
     } = data;
 
     if (
-      name.length <= 0 ||
+      title.length <= 0 ||
       description.length <= 0 ||
       price <= 0 ||
       stock <= 0 ||
@@ -52,7 +52,7 @@ function ProductEntry() {
     }
 
     const formDataBody = new FormData();
-    formDataBody.append("name", name);
+    formDataBody.append("title", title);
     formDataBody.append("description", description);
     formDataBody.append("category", category);
     formDataBody.append("discountedPrice", discountedPrice);
@@ -60,11 +60,26 @@ function ProductEntry() {
     formDataBody.append("stock", stock);
     formDataBody.append("rating", rating);
 
+    console.log(images);
+
     images?.forEach((image) => {
-      formDataBody.append("filepath", image);
+      formDataBody.append("files", image);
     });
 
-    axios.post("http://localhost:8080/create-product", formDataBody, {
+    console.log(formDataBody)
+    console.log(images)
+    
+    for (let pair of formDataBody.entries()) {
+        if (pair[1] instanceof File) {
+          console.log(
+            `${pair[0]}: File - ${pair[1].name}, ${pair[1].type}, ${pair[1].size} bytes`
+          );
+        } else {
+          console.log(`${pair[0]}: ${pair[1]}`);
+        }
+    }
+
+    axios.post("http://localhost:8080/product/create-product", formDataBody, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -89,11 +104,11 @@ function ProductEntry() {
               Name
             </label>
             <input
-              id="name"
-              name="name"
+              id="title"
+              name="title"
               type="text"
               className="w-full mt-1 p-2 border rounded-md focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-              value={data.name}
+              value={data.title}
               onChange={handleChange}
               placeholder="Enter product name"
             />
