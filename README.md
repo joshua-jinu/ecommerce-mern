@@ -91,4 +91,8 @@ mern-ecommerce/
    - Mapped dummy product data to Card component in Home.jsx.
 9. Milestone 9:
    - Created the form for the products with the required fields
-   - form with product title, description, price, discounted price, category and rating
+   - form with product title, description, stock, price, discounted price, category and rating
+10. Milestone 10:
+    - Added Product Schema with validation
+    - created /create-product endpoint for CRUD operations for products
+    - Handled image uploads using cloudinary and multer
