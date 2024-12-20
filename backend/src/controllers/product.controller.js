@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
 import Product from "../models/product.model.js";
 import multer from "multer";
+import cloudinary from '../utils/cloudinary.js'
 import fs from 'fs';
 
 export const createProductController = async (req, res) =>{
@@ -21,7 +21,6 @@ export const createProductController = async (req, res) =>{
                 return result.url;
             });
         })
-        
 
         const dataImages = await Promise.all(arrayImage);
         const newProduct = await Product.create({
@@ -31,13 +30,15 @@ export const createProductController = async (req, res) =>{
             price,
             stock,
             category,
-            rating
+            rating,
+            images: dataImages
         })
 
         return res.status(201).send({
             message: 'Image Successfully Uploaded',
             success: true, 
-            dataImages
+            dataImages,
+            newProduct
         });
     }catch(err){
         if(err instanceof multer.MulterError){
