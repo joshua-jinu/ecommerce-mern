@@ -62,17 +62,17 @@ export const getProducts = async (req, res) =>{
     }
 }
 
-export const deleteProduct = async(req,res) =>{
-    const {id} = req.params;
-    const productExists = await Product.findOne({_id:id});
-    if(!productExists){
-        return res.status(400).json({success: false, message: "Product does not exist"});
-    }
-    try{
-        await Product.findByIdAndDelete(id);
-        return res.status(200).json({success: true, message: `Product ${id} Deleted`});
-    }catch(err){
-        console.log("Error in deleting product", err.message);
-        return res.status(500).json({success: false, message: "Error in product deletion"});
-    }
-}
+// export const deleteProduct = async(req,res) =>{
+//     const {id} = req.params;
+//     const productExists = await Product.findOne({_id:id});
+//     if(!productExists){
+//         return res.status(400).json({success: false, message: "Product does not exist"});
+//     }
+//     try{
+//         await Product.findByIdAndDelete(id);
+//         return res.status(200).json({success: true, message: `Product ${id} Deleted`});
+//     }catch(err){
+//         console.log("Error in deleting product", err.message);
+//         return res.status(500).json({success: false, message: "Error in product deletion"});
+//     }
+// }
