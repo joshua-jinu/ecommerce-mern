@@ -99,3 +99,6 @@ mern-ecommerce/
 11. Milestone 11:
     - Created endpoint to fetch products
     - created controller to handle get request at /product/get-products
+12. Milestone 12:
+    - fetched product data from database using axios get request to backend api url
+    - mapped the products data dynamically using card component
