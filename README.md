@@ -96,3 +96,6 @@ mern-ecommerce/
     - Added Product Schema with validation
     - created /create-product endpoint for CRUD operations for products
     - Handled image uploads using cloudinary and multer
+11. Milestone 11:
+    - Created endpoint to fetch products
+    - created controller to handle get request at /product/get-products
