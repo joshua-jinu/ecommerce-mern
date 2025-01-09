@@ -8,7 +8,6 @@ function Home() {
     useEffect(()=>{
         const fetchProducts = async () =>{
             const res = await axios.get("http://localhost:8080/product/get-products")
-            console.log(res.data.data);
             setData(res.data.data);
         }        
         fetchProducts();
@@ -25,6 +24,7 @@ function Home() {
                         sp={ele.discountedPrice}
                         mrp={ele.price}
                         url={ele.images[0]?ele.images[0]:"product image missing"}
+                        id={ele._id}
                     />
                 </div>
             );
