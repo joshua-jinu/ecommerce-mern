@@ -102,3 +102,8 @@ mern-ecommerce/
 12. Milestone 12:
     - fetched product data from database using axios get request to backend api url
     - mapped the products data dynamically using card component
+13. Milestone 13:
+    - PUT endpoint to update the products
+    - Frontenv form with pre-filled data to update the products
+    - handle submit for product update form with axios
+    - Added update button to product card

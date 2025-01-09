@@ -62,6 +62,66 @@ export const getProducts = async (req, res) =>{
     }
 }
 
+export const updateProduct= async (req, res) =>{
+    const {
+        title, 
+        description,
+        discountedPrice,
+        price, 
+        stock, 
+        category,
+        rating, 
+    } = req.body;
+    const {id} = req.params;
+
+    try{
+        const userExists = await Product.findOne({_id: id})
+
+        if(!userExists){
+            return res.status(404).send({success: false, message:"Product Not Found"})
+        }
+
+        const arrayImages = req.files.map(async (req, res)=>{
+            return cloudinary.uploader.upload(singleFile.path, {
+                filder: 'uploads',
+            }).then((res)=>{
+                fs.unlinkSync(singleFile.path);
+                return res.url;
+            })
+        })
+        const imageData = await Promise.all(arrayImages);
+        const updated = await Product.findByIdAndUpdate(id, {
+            title, 
+            description,
+            discountedPrice,
+            price, 
+            stock, 
+            category,
+            rating,
+            images: imageData
+        }, {new: true})
+        return res.status(201).send({success: true, message: "Document Updated successfully", updatedResult: updated})
+    }catch(err){
+        console.log(err);
+    }
+}
+
+export const getSingleProduct = async ( req, res) => {
+    console.log("hi")
+    const {id} = req.params;
+    try{
+        const data = await Product.findOne({_id:id});
+        console.log(data);
+        if(!data){
+            return res.status(404).send({message: "product not found"});
+        }
+        return res.status(200).send({message: 'product successfully fetched', data, success: true});
+    }catch(err){
+        console.log("error in product updation");
+        return res.status(500).send({message: err.message, success: false})
+    }
+}
+
 // export const deleteProduct = async(req,res) =>{
 //     const {id} = req.params;
 //     const productExists = await Product.findOne({_id:id});

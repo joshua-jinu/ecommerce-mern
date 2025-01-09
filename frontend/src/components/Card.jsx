@@ -1,6 +1,19 @@
+import axios from 'axios'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-function Card({title, sp, mrp, url}) { 
+function Card({title, sp, mrp, url, id}) { 
+
+    // const handleDelete = async (id) =>{
+    //     try {
+    //         const data = await axios.delete(`http://localhost:8080/product/${id}`);
+    //         console.log(data);
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+        
+    // }
+
   return (
     <div className="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
         <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
@@ -41,6 +54,14 @@ function Card({title, sp, mrp, url}) {
             </svg>
             Add to cart
             </a>
+            <Link to={`/product-update/${id}`}>
+                <button className='flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300'>
+                    Update
+                </button>
+            </Link>
+            {/* <button className='flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300' onClick={()=>{handleDelete(id)}}>
+                Delete
+            </button> */}
         </div>
     </div>
   )
