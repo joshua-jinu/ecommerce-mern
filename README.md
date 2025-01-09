@@ -106,3 +106,4 @@ mern-ecommerce/
     - PUT endpoint to update the products
     - Frontenv form with pre-filled data to update the products
     - handle submit for product update form with axios
+    - Added update button to product card
