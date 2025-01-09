@@ -1,7 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function ProductEntry() {
+  const navigator = useNavigate();
   const [data, setData] = useState({
     title: "",
     description: "",
@@ -83,7 +85,10 @@ function ProductEntry() {
       headers: {
         "Content-Type": "multipart/form-data",
       },
-    });
+    })
+      .then(()=>{
+        navigator('/')
+      })
   };
 
   return (

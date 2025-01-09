@@ -107,3 +107,7 @@ mern-ecommerce/
     - Frontenv form with pre-filled data to update the products
     - handle submit for product update form with axios
     - Added update button to product card
+14. Milestone 14:
+    - added delete endpoint in backend
+    - added delete button to product card
+    - handleDelete which deletes the product and displays the updated products
