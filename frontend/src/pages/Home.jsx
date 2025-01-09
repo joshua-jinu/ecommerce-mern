@@ -14,6 +14,16 @@ function Home() {
         console.log("data fetched");
     }, []);
 
+    const handleDelete = async (id) =>{
+        try {
+            const data = await axios.delete(`http://localhost:8080/product/${id}`);
+            setData(data.data.data);
+        } catch (error) {
+            console.log(error);
+        }
+        
+    }
+
   return (
     <div className='flex flex-wrap w-full justify-around items-center'>
         {products.map( (ele, index) => {
@@ -25,6 +35,7 @@ function Home() {
                         mrp={ele.price}
                         url={ele.images[0]?ele.images[0]:"product image missing"}
                         id={ele._id}
+                        handleDelete={handleDelete}
                     />
                 </div>
             );

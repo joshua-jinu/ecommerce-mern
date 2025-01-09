@@ -81,7 +81,7 @@ function UpdateEntry() {
         }
     }
 
-    axios.post("http://localhost:8080/product/create-product", formDataBody, {
+    axios.post(`http://localhost:8080/product/create-product/${id}`, formDataBody, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
