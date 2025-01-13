@@ -113,3 +113,6 @@ mern-ecommerce/
     - handleDelete which deletes the product and displays the updated products
 15. Milestone 15:
     - added NavBar
+16. Milestone 16:
+    - added Single Product Page
+    - added Image Modal
