@@ -111,3 +111,5 @@ mern-ecommerce/
     - added delete endpoint in backend
     - added delete button to product card
     - handleDelete which deletes the product and displays the updated products
+15. Milestone 15:
+    - added NavBar
