@@ -1,4 +1,5 @@
 import React from 'react'
+import { ArrowLeft, ArrowRight, X } from 'lucide-react'
 
 function ImageModal({product, selectedImage, setSelectedImage, setShowImageModal}) {
   return (

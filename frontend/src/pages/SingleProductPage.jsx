@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import ImageModal from '../components/modal/ImageModal';
 import { Star, ShoppingBag, Heart } from 'lucide-react';
+// import axios from 'axios';
 
 function SingleProductPage() {
     const {id} = useParams();
@@ -10,6 +11,7 @@ function SingleProductPage() {
     const [showImageModal, setShowImageModal] = useState(false);
 
     useEffect(()=>{
+        // const res = await axios.get(`http://localhost:8080/product/get-product/${id}`);
 
     }, [id])
 
