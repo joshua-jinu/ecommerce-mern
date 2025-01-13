@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Card from '../components/Card'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function Home() {
     const [products, setData] = useState([]);
@@ -29,14 +30,16 @@ function Home() {
         {products.map( (ele, index) => {
             return (
                 <div key={index}>
-                    <Card 
-                        title={ele.title}
-                        sp={ele.discountedPrice}
-                        mrp={ele.price}
-                        url={ele.images[0]?ele.images[0]:"product image missing"}
-                        id={ele._id}
-                        handleDelete={handleDelete}
-                    />
+                    <Link to={`/product-details/${ele._id}`}>
+                        <Card 
+                            title={ele.title}
+                            sp={ele.discountedPrice}
+                            mrp={ele.price}
+                            url={ele.images[0]?ele.images[0]:"product image missing"}
+                            id={ele._id}
+                            handleDelete={handleDelete}
+                        />
+                    </Link>
                 </div>
             );
         })}
