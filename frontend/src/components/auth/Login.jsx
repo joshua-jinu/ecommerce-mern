@@ -11,7 +11,7 @@ function Login() {
 
   const onSubmit = async (data) =>{
     try {
-      const res = await axios.post('hhtp://localhost:8080/user/login');
+      const res = await axios.post('http://localhost:8080/user/login', data);
       localStorage.setItem('token', res.data.token);
       navigate('/');
     } catch (error) {

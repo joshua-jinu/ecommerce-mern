@@ -1,6 +1,9 @@
 import { Router } from "express";
 import { createUser, fetchUsers, login, signup, verifyUserController } from "../controllers/user.controller.js";
-import { upload } from "../middlewares/multer.js";
+// import { upload } from "../middlewares/multer.js";
+import multer from "multer"
+
+const upload = multer({ dest: 'temp-uploads/'});
 
 const router = Router();
 
