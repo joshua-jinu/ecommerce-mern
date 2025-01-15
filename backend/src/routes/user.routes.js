@@ -9,7 +9,7 @@ router.get("/", fetchUsers);
 router.post("/create-user", upload.single("file"), createUser);
 router.get("/authentication/:token", verifyUserController); //url to verify users
 
-router.post('/signup', signup);
+router.post('/signup', upload.single('file'), signup);
 router.post('/login', login);
 
 export default router;

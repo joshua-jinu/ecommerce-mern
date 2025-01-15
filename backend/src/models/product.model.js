@@ -37,7 +37,8 @@ const productSchema = new mongoose.Schema({
         type:[String],
         required: true,
         default: ""
-    }
+    },
+    userEmail: String
 }, {versionKey: false})
 
 export default mongoose.model('Product', productSchema)

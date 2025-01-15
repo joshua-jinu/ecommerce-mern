@@ -61,6 +61,7 @@ function ProductEntry() {
     formDataBody.append("price", price);
     formDataBody.append("stock", stock);
     formDataBody.append("rating", rating);
+    formDataBody.append("token", localStorage.getItem("token"));
 
     console.log(images);
 

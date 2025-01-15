@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import {Validate} from '../../validation.js'
+import axios from 'axios'
 
 function Signup() {
   const [data, setData] = useState({
@@ -9,17 +10,25 @@ function Signup() {
     password:'',
   })
   const [error, setError] = useState('');
+  const navigateUser = useNavigate();
 
   const handleChange = (e) =>{
-    const {name, value} = e.target;
-
-    setData((prev)=>({
-      ...prev,
-      [name]:value,
-    }));
+    const {name, value, files} = e.target;
+    console.log(files);
+    if(name=='file'){
+      setData({
+        ...data, 
+        [name]: files[0]
+      })
+    }else{
+      setData((prev)=>({
+        ...prev,
+        [name]:value,
+      }));
+    }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const NameV = Validate.validateName(data.name);
     const EmailV = Validate.validateEmail(data.email);
@@ -36,6 +45,22 @@ function Signup() {
       return setError(PassV);
     }
 
+    const formDataBody = new FormData();
+    formDataBody.append("email", data.email);
+    formDataBody.append("password", data.password);
+    formDataBody.append("name", data.name);
+    formDataBody.append("file", data.file);
+    try {
+      await axios.post('http://localhost:8080/user/signup', formDataBody, {
+        headers: {
+          'Content-Type':'multipart/form-data',
+        }
+      });
+      navigateUser('/login');
+      
+    } catch (error) {
+      alert("Something went wrong"+error.message);
+    }
   }
 
   return (

@@ -31,7 +31,8 @@ export const createProductController = async (req, res) =>{
             stock,
             category,
             rating,
-            images: dataImages
+            images: dataImages,
+            userEmail: req.userEmailAddress,
         })
 
         return res.status(201).send({
