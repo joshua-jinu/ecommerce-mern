@@ -116,3 +116,7 @@ mern-ecommerce/
 16. Milestone 16:
     - added Single Product Page
     - added Image Modal
+    - added JWT verify middleware
+    - added useremail to product schema
+    - updated login and signup controllers
+    - added middlewares to handle singup and login functionality
