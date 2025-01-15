@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import userHandler from './routes/user.routes.js'
 import productHandler from './routes/product.routes.js';
 import cors from 'cors'
+import cookieParser  from 'cookie-parser'
 
 if(process.env.NODE_ENV!=='PRODUCTION'){
     dotenv.config({
@@ -24,3 +25,4 @@ app.get('/', (req, res)=>{
 
 app.use('/user', userHandler)
 app.use('/product', productHandler)
+app.use(cookieParser());

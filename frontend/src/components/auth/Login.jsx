@@ -1,14 +1,23 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
+import {NavLink, useNavigate} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
+import axios from 'axios';
 
 function Login() {
+  const navigate = useNavigate();
 
   const {register, reset, handleSubmit, formState} = useForm();
   const {errors} = formState;
 
   const onSubmit = async (data) =>{
-    console.log(data)
+    try {
+      const res = await axios.post('hhtp://localhost:8080/user/login');
+      localStorage.setItem('token', res.data.token);
+      navigate('/');
+    } catch (error) {
+      console.log(error.message);
+    }
+
   } 
 
   return (

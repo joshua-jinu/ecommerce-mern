@@ -3,6 +3,8 @@ import { ErrorHandler } from '../utils/ErrorHandler.js';
 import { transporter } from '../utils/sendMail.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs'
+import cloudinary from 'cloudinary'
+import fs from 'fs'
 
 const generateToken = (data) => {
     const token = jwt.sign({name: data.name, email: data.email, password: data.password}, process.env.SECRET_KEY);
@@ -87,6 +89,13 @@ export const signup = async (req, res) => {
             return res.status(403).send({success:false, message: error.message, status:error.statusCode})
         }
 
+        const url = cloudinary.uploader.upload(res.file.path, {
+            filder: 'uploads',
+        }).then((res)=>{
+            fs.unlinkSync(singleFile.path);
+            return res.url;
+        })
+
         bcrypt.hash(password, 10, async function(err, hash){
             try{
                 if(err){
@@ -96,6 +105,10 @@ export const signup = async (req, res) => {
                     name: name,
                     email,
                     password: hash,
+                    avatar: {
+                        url: url,
+                        public_id: `${email}_public_id`,
+                    }
                 })
                 await newUser.save();
                 return res.status(201).send({success: true, message: "User Created Successfully"});
@@ -127,7 +140,7 @@ export const login = async (req, res)=>{
             return res
                 .status(200)
                 .cookie('token', token)
-                .send({success: true, message: "User logged in successfully.."})
+                .send({success: true, message: "User logged in successfully..", token})
         });
     }catch(err){
         return res.status(403).send({success: false, message: err.message});
