@@ -120,3 +120,7 @@ mern-ecommerce/
     - added useremail to product schema
     - updated login and signup controllers
     - added middlewares to handle singup and login functionality
+17. Milestone 17:
+    - Created Cart Schema
+    - Created Cart Model and Controller
+    - Created add products and get products endpoint for Cart
