@@ -19,7 +19,7 @@ export async function AddToCartController(req, res){
             return res.status(401).send({message: "Unauthorized, Please signup", success: false});
         }
 
-        const productPresent = await productModel.findOne({_id: productId});
+        const productPresent = await cartModel.findOne({productId: productId});
         if(productPresent){
             return res.status(400).send({message: "Product already present in the cart", success: false});
         }
