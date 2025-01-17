@@ -124,3 +124,4 @@ mern-ecommerce/
     - Created Cart Schema
     - Created Cart Model and Controller
     - Created add products and get products endpoint for Cart
+    - add products to cart from frontend

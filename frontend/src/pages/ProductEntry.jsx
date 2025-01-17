@@ -71,6 +71,8 @@ function ProductEntry() {
 
     console.log(formDataBody)
     console.log(images)
+
+    const token = localStorage.getItem('token')
     
     for (let pair of formDataBody.entries()) {
         if (pair[1] instanceof File) {
@@ -82,7 +84,7 @@ function ProductEntry() {
         }
     }
 
-    axios.post("http://localhost:8080/product/create-product", formDataBody, {
+    axios.post(`http://localhost:8080/product/create-product?${token}`, formDataBody, {
       headers: {
         "Content-Type": "multipart/form-data",
       },

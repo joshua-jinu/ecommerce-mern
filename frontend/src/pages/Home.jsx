@@ -30,16 +30,14 @@ function Home() {
         {products.map( (ele, index) => {
             return (
                 <div key={index}>
-                    <Link to={`/product-details/${ele._id}`}>
-                        <Card 
-                            title={ele.title}
-                            sp={ele.discountedPrice}
-                            mrp={ele.price}
-                            url={ele.images[0]?ele.images[0]:"product image missing"}
-                            id={ele._id}
-                            handleDelete={handleDelete}
-                        />
-                    </Link>
+                    <Card 
+                        title={ele.title}
+                        sp={ele.discountedPrice}
+                        mrp={ele.price}
+                        url={ele.images[0]?ele.images[0]:"product image missing"}
+                        id={ele._id}
+                        handleDelete={handleDelete}
+                    />
                 </div>
             );
         })}
