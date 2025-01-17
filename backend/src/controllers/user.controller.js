@@ -13,7 +13,7 @@ dotenv.config({
 
 const generateToken = (data) => {
     console.log(process.env.API_SECRET_KEY);
-    const token = jwt.sign({name: data.name, email: data.email, password: data.password}, process.env.API_SECRET_KEY);
+    const token = jwt.sign({name: data.name, email: data.email, password: data.password, id:data.id},process.env.API_SECRET_KEY);
     return token;
 };
 
@@ -96,10 +96,6 @@ export const signup = async (req, res) => {
             return res.status(403).send({success:false, message: error.message, status:error.statusCode})
         }
 
-        console.log("bro")
-
-        console.log(file)
-
         const url = await cloudinary.uploader.upload(file.path, {
             filder: 'uploads',
         }).then((res)=>{
@@ -108,8 +104,6 @@ export const signup = async (req, res) => {
         }).catch((err)=>{
             console.log(err);
         })
-
-        console.log(url);
 
         bcrypt.hash(password, 10, async function(err, hash){
             try{
