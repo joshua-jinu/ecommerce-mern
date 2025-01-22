@@ -1,9 +1,9 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router";
 
-function ProductEntry() {
-  const navigator = useNavigate();
+function UpdateEntry() {
+    const {id} = useParams();
   const [data, setData] = useState({
     title: "",
     description: "",
@@ -61,7 +61,6 @@ function ProductEntry() {
     formDataBody.append("price", price);
     formDataBody.append("stock", stock);
     formDataBody.append("rating", rating);
-    formDataBody.append("token", localStorage.getItem("token"));
 
     console.log(images);
 
@@ -71,8 +70,6 @@ function ProductEntry() {
 
     console.log(formDataBody)
     console.log(images)
-
-    const token = localStorage.getItem('token')
     
     for (let pair of formDataBody.entries()) {
         if (pair[1] instanceof File) {
@@ -84,15 +81,24 @@ function ProductEntry() {
         }
     }
 
-    axios.post(`http://localhost:8080/product/create-product?${token}`, formDataBody, {
+    axios.post(`http://localhost:8080/product/create-product/${id}`, formDataBody, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
-    })
-      .then(()=>{
-        navigator('/')
-      })
+    });
   };
+
+  useEffect(()=>{
+    const fetchData = async () => {
+        const singleData = await axios.get(
+          `http://localhost:8080/product/get-product/${id}`
+        );
+        setData(singleData.data.data);
+        setImages(singleData.data.images);
+    };
+  
+      fetchData();
+  }, [id])
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-8">
@@ -248,7 +254,7 @@ function ProductEntry() {
               type="submit"
               className="w-full bg-indigo-600 text-white py-3 rounded-md font-semibold hover:bg-indigo-500 transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
-              Submit Product
+              Update
             </button>
           </div>
         </form>
@@ -257,4 +263,4 @@ function ProductEntry() {
   );
 }
 
-export default ProductEntry;
+export default UpdateEntry;

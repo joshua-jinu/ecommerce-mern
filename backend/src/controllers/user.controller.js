@@ -3,9 +3,17 @@ import { ErrorHandler } from '../utils/ErrorHandler.js';
 import { transporter } from '../utils/sendMail.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs'
+import cloudinary from '../utils/cloudinary.js'
+import fs from 'fs'
+import dotenv from 'dotenv'
+
+dotenv.config({
+    path: '../config/.env'
+});
 
 const generateToken = (data) => {
-    const token = jwt.sign({name: data.name, email: data.email, password: data.password}, process.env.SECRET_KEY);
+    console.log(process.env.API_SECRET_KEY);
+    const token = jwt.sign({name: data.name, email: data.email, password: data.password, id:data.id},process.env.API_SECRET_KEY);
     return token;
 };
 
@@ -74,6 +82,7 @@ export const verifyUserController = async (req, res) =>{
 
 export const signup = async (req, res) => {
     const {name, email, password} = req.body;
+    const file = req.file;
 
     if(!name || !email || !password){
         console.log("data not provided")
@@ -87,6 +96,15 @@ export const signup = async (req, res) => {
             return res.status(403).send({success:false, message: error.message, status:error.statusCode})
         }
 
+        const url = await cloudinary.uploader.upload(file.path, {
+            filder: 'uploads',
+        }).then((res)=>{
+            fs.unlinkSync(file.path);
+            return res.url;
+        }).catch((err)=>{
+            console.log(err);
+        })
+
         bcrypt.hash(password, 10, async function(err, hash){
             try{
                 if(err){
@@ -96,6 +114,10 @@ export const signup = async (req, res) => {
                     name: name,
                     email,
                     password: hash,
+                    avatar: {
+                        url: url,
+                        public_id: `${email}_public_id`,
+                    }
                 })
                 await newUser.save();
                 return res.status(201).send({success: true, message: "User Created Successfully"});
@@ -104,6 +126,7 @@ export const signup = async (req, res) => {
             }
         });
     }catch(err){
+        console.log(err.message);
         return res.status(500).send({success: false, message: `Server error in signup: ${err.message}`})
     };
 }
@@ -113,9 +136,13 @@ export const login = async (req, res)=>{
     try{
         const userExists = await User.findOne({email: email});
 
-        bcrypt.compare(password, userExists.password, function (err, res){
+        bcrypt.compare(password, userExists.password, function (err, isMatch){
             if(err)
-                res.status(403).send({success:false, message: err.message});
+                return res.status(403).send({success:false, message: err.message});
+            if (!isMatch) {
+                return res.status(400).send({ success: false, message: "Incorrect password" });
+            }
+
             let data = {
                 id: userExists._id,
                 email,
@@ -123,13 +150,10 @@ export const login = async (req, res)=>{
             };
     
             const token = generateToken(data); 
-
-            return res
-                .status(200)
-                .cookie('token', token)
-                .send({success: true, message: "User logged in successfully.."})
+            return res.status(200).cookie('token', token).send({success: true, message: "User logged in successfully..", token});
         });
     }catch(err){
+        console.log(err)
         return res.status(403).send({success: false, message: err.message});
     }
 }

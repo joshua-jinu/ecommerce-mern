@@ -1,12 +1,26 @@
+import axios from 'axios'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-function Card({title, sp, mrp, url}) { 
+function Card({title, sp, mrp, url, id, handleDelete}) { 
+
+    const handleAddToCart = async () =>{
+        const token = localStorage.getItem('token');
+        try {
+            await axios.post(`http://localhost:8080/cart/add-to-cart?token=${token}`, {productId: id, quantity: 1})
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+
   return (
     <div className="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
-        <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
-            <img className="object-cover" src={url} alt="product image" />
-            {/* <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">39% OFF</span> */}
-        </a>
+        <Link to={`/product-details/${id}`}>
+            <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
+                <img className="object-cover" src={url} alt="product image" />
+                {/* <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">39% OFF</span> */}
+            </a>
+        </Link>
         <div className="mt-4 px-5 pb-5">
             <a href="#">
             <h5 className="text-xl tracking-tight text-slate-900">{title}</h5>
@@ -41,6 +55,16 @@ function Card({title, sp, mrp, url}) {
             </svg>
             Add to cart
             </a>
+            <div className='flex flex-row justify-between mt-4'>
+                <Link to={`/product-update/${id}`}>
+                    <button className='flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300'>
+                        Update
+                    </button>
+                </Link>
+                <button className='flex items-center justify-center rounded-md bg-red-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300' onClick={()=>{handleDelete(id)}}>
+                    Delete
+                </button>
+            </div>
         </div>
     </div>
   )

@@ -3,6 +3,8 @@ import Login from '../pages/Login';
 import Signup from '../pages/SignUp'
 import Home from '../pages/Home';
 import ProductEntry from '../pages/ProductEntry';
+import UpdateEntry from '../pages/updateEntry';
+import SingleProductPage from '../pages/SingleProductPage';
 
 function Router() {
   return (
@@ -10,7 +12,10 @@ function Router() {
       <Route path="/" element={<Home/>}></Route>
       <Route path="/login" element={<Login/>}></Route>
       <Route path="/signup" element={<Signup/>}></Route>
-      <Route path="/product-entry" element={<ProductEntry/>}></Route>
+      <Route path="/product-entry-page" element={<ProductEntry/>}></Route>
+      <Route path="/product-update/:id" element={<UpdateEntry/>}></Route>
+      <Route path="/product-details/:id" element={<SingleProductPage/>}></Route>
+      <Route path="/cart" element={<h1>Cart</h1>}></Route>
     </Routes>
   )
 }

@@ -102,3 +102,26 @@ mern-ecommerce/
 12. Milestone 12:
     - fetched product data from database using axios get request to backend api url
     - mapped the products data dynamically using card component
+13. Milestone 13:
+    - PUT endpoint to update the products
+    - Frontenv form with pre-filled data to update the products
+    - handle submit for product update form with axios
+    - Added update button to product card
+14. Milestone 14:
+    - added delete endpoint in backend
+    - added delete button to product card
+    - handleDelete which deletes the product and displays the updated products
+15. Milestone 15:
+    - added NavBar
+16. Milestone 16:
+    - added Single Product Page
+    - added Image Modal
+    - added JWT verify middleware
+    - added useremail to product schema
+    - updated login and signup controllers
+    - added middlewares to handle singup and login functionality
+17. Milestone 17:
+    - Created Cart Schema
+    - Created Cart Model and Controller
+    - Created add products and get products endpoint for Cart
+    - add products to cart from frontend

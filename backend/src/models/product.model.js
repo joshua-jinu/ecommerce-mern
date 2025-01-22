@@ -23,6 +23,11 @@ const productSchema = new mongoose.Schema({
         required: true,
         default: 1
     },
+    rating:{
+        type: Number,
+        required: false,
+        default: 1
+    },
     category: {
         type: String,
         required: false,
@@ -32,7 +37,8 @@ const productSchema = new mongoose.Schema({
         type:[String],
         required: true,
         default: ""
-    }
+    },
+    userEmail: String
 }, {versionKey: false})
 
 export default mongoose.model('Product', productSchema)

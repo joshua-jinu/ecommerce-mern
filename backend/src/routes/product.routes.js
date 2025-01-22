@@ -1,12 +1,15 @@
 import { Router } from "express";
 import multer from "multer";
-import { createProductController, getProducts } from "../controllers/product.controller.js";
+import { createProductController, deleteProduct, getProducts, getSingleProduct, updateProduct } from "../controllers/product.controller.js";
+import { verifyUser } from "../middlewares/jwtverify.js";
 
 const upload = multer({ dest: 'temp-uploads/'});
 const router = Router();
 
-router.post('/create-product', upload.array('files', 5) , createProductController);
+router.post('/create-product', upload.array('files', 5), verifyUser , createProductController);
+router.get('/get-product/:id', getSingleProduct);
 router.get('/get-products', getProducts);
-// router.delete('/:id', deleteProduct);
+router.put('/update-products', upload.array('files', 5), updateProduct);
+router.delete('/:id', deleteProduct);
 
 export default router;

@@ -1,4 +1,4 @@
-import SignUpComponent from '../components/auth/Login'
+import SignUpComponent from '../components/auth/Signup.jsx'
 
 function SignUp() {
   return <SignUpComponent/>
