@@ -7,15 +7,15 @@ if(process.env.NODE!='PRODUCTION'){
     })
 }
 
-export const verifyUser = (err, req, res, next) =>{
+export const verifyUser = (req, res, next) =>{
     const {token} = req.query;
     if(!token){
         return res.status(404).send({message: "Send token over requrest"});
     }
     
-    const data = jwt.verify(req.body.token, process.env.SECRET_KEY);
+    const data = jwt.verify(token, process.env.API_SECRET_KEY);
     req.userEmailAddress = data.email;
-    res.UserId = data.id;
+    req.UserId = data.id;
     next();
 
 }

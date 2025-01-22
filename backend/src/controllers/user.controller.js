@@ -6,6 +6,8 @@ import bcrypt from 'bcryptjs'
 import cloudinary from '../utils/cloudinary.js'
 import fs from 'fs'
 import dotenv from 'dotenv'
+import mongoose from 'mongoose';
+import userModel from '../models/user.model.js';
 
 dotenv.config({
     path: '../config/.env'
@@ -161,4 +163,28 @@ export const login = async (req, res)=>{
 export const fetchUsers = async (req, res) => {
     const users = await User.find({});
     return res.status(200).send({success:true, message: users})
+}
+
+export const getUserData = async (req, res) =>{
+    const userId = req.userId;
+    try {
+        if(!mongoose.Types.ObjectId.isValid(id)){
+            return res.status(401).send({
+                message: 'Send Valid User Id',
+                success: false
+            })
+
+            const userPresent = await userModel.findOne({_id:userId});
+            if(!userPresent){
+                return res.status(401).send({
+                    message:'please signup, user not present',
+                    success:false
+                })
+            }
+            return res.status(200).send({message: userPresent, success: true});
+        }
+    } catch (err) {
+        console.log(err)
+        return res.status(500).send({success: false, message: err.message});
+    }
 }
