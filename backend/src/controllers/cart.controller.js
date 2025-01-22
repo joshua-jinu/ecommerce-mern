@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
-import userModel from "../models/user.model";
-import cartModel from "../models/cart.model";
-import productModel from "../models/product.model";
+import userModel from "../models/user.model.js";
+import cartModel from "../models/cart.model.js";
+import productModel from "../models/product.model.js";
 
 export async function AddToCartController(req, res){
     const {productId, quantity} = req.body;
@@ -48,7 +48,7 @@ export async function getCartProducts(req, res){
             return res.status(401).send({message: "Unauthorized, Please signup", success: false});
         }
         
-        const data = await cartModel.find({userId});
+        const data = await cartModel.find({userId}).populate('productId');
         return res.status(200).send({message:'Data is successfully fetched', success: true, cartData: data});
     }catch(err){
         console.log(err);
