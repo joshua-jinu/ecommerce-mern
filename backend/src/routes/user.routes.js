@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createUser, fetchUsers, login, signup, verifyUserController } from "../controllers/user.controller.js";
+import { createUser, fetchUsers, getUserData, login, signup, verifyUserController } from "../controllers/user.controller.js";
 // import { upload } from "../middlewares/multer.js";
 import multer from "multer"
 import { verifyUser } from "../middlewares/jwtverify.js";
@@ -9,7 +9,7 @@ const upload = multer({ dest: 'temp-uploads/'});
 const router = Router();
 
 router.get("/", fetchUsers);
-router.get('/user-data', verifyUser, )
+router.get('/user-data', verifyUser, getUserData)
 
 router.post("/create-user", upload.single("file"), createUser);
 router.get("/authentication/:token", verifyUserController); //url to verify users

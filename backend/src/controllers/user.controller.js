@@ -166,13 +166,14 @@ export const fetchUsers = async (req, res) => {
 }
 
 export const getUserData = async (req, res) =>{
-    const userId = req.userId;
+    const userId = req.UserId;
     try {
-        if(!mongoose.Types.ObjectId.isValid(id)){
-            return res.status(401).send({
-                message: 'Send Valid User Id',
-                success: false
-            })
+            if(!mongoose.Types.ObjectId.isValid(userId)){
+                return res.status(401).send({
+                    message: 'Send Valid User Id',
+                    success: false
+                })
+            }
 
             const userPresent = await userModel.findOne({_id:userId});
             if(!userPresent){
@@ -182,8 +183,7 @@ export const getUserData = async (req, res) =>{
                 })
             }
             return res.status(200).send({message: userPresent, success: true});
-        }
-    } catch (err) {
+    }catch (err) {
         console.log(err)
         return res.status(500).send({success: false, message: err.message});
     }

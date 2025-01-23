@@ -125,3 +125,11 @@ mern-ecommerce/
     - Created Cart Model and Controller
     - Created add products and get products endpoint for Cart
     - add products to cart from frontend
+18. Milestone 18:
+    - created endpoint.
+    - created cart page to view cart items.
+19. Milestone 19:
+    - Created cart card
+    - featched cart data and displayed it on the frontend
+20. Milestone 20:
+    - Created profile component
