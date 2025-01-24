@@ -133,3 +133,5 @@ mern-ecommerce/
     - featched cart data and displayed it on the frontend
 20. Milestone 20:
     - Created profile component
+21. Milestone 21:
+    - Created Address Form component
