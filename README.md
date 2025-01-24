@@ -135,3 +135,7 @@ mern-ecommerce/
     - Created profile component
 21. Milestone 21:
     - Created Address Form component
+22. Milestone 22:
+    - updated address form to send data to backend api
+    - created endpoint to handle address form data
+    - created address deletion endpoint

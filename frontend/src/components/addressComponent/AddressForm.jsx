@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
+import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
 
 const AddressForm = () => {
   const [formData, setFormData] = useState({
     type: 'home',
-    addressLine1: '',
-    addressLine2: '',
+    address1: '',
+    address2: '',
     city: '',
     country: '',
     zipCode: ''
   });
+  const navigator = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,7 +23,13 @@ const AddressForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    try {
+      const res = axios.post(`http://localhost:8080/user/add-address?token=${localStorage.getItem('token')}`, formData);
+      console.log('address added', res);
+      navigator('/profile');
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -55,12 +64,12 @@ const AddressForm = () => {
         </div>
 
         <div>
-          <label htmlFor="addressLine1" className="block text-sm font-medium text-gray-700 mb-1">Address Line 1</label>
+          <label htmlFor="address1" className="block text-sm font-medium text-gray-700 mb-1">Address Line 1</label>
           <input
             type="text"
-            id="addressLine1"
-            name="addressLine1"
-            value={formData.addressLine1}
+            id="address1"
+            name="address1"
+            value={formData.address1}
             onChange={handleChange}
             required
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -68,12 +77,12 @@ const AddressForm = () => {
         </div>
 
         <div>
-          <label htmlFor="addressLine2" className="block text-sm font-medium text-gray-700 mb-1">Address Line 2 (Optional)</label>
+          <label htmlFor="address2" className="block text-sm font-medium text-gray-700 mb-1">Address Line 2 (Optional)</label>
           <input
             type="text"
-            id="addressLine2"
-            name="addressLine2"
-            value={formData.addressLine2}
+            id="address2"
+            name="address2"
+            value={formData.address2}
             onChange={handleChange}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />

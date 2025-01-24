@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 
 const Card = ({ children, className = '' }) => (
@@ -42,6 +43,20 @@ function ProfileCard() {
    };
    getUserData();
  }, []);
+
+ const handleDeleteAddress = async (id) =>{
+  const token = localStorage.getItem('token');
+  try {
+    if(!token){
+      console.log('token not present')
+    }
+
+    const res =await  axios.delete(`http://localhost:8080/user/delete-address/${id}?token=${token}`);
+    console.log("address deleted",res);
+  } catch (error) {
+    console.log(error.message);
+  }
+}
 
  return (
    <div className="min-h-screen bg-gray-50 p-4">
@@ -147,9 +162,28 @@ function ProfileCard() {
            value={
              userData?.address?.length > 0 ? (
                <ul className="list-disc list-inside">
-                 {/* {userData.address.map((addr, index) => (
-                     <li key={index}>{addr}</li>
-                   ))} */}
+                 {userData.address.map((addr, index) => (
+                     <li key={index}>
+                        <button 
+                          className='mt-8 bg-gray-600 text-white py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2'
+                          onClick={()=>{handleDeleteAddress(addr._id)}}
+                        >
+                          Delete Address 
+                        </button>
+                        {addr.addressType}
+                        <br/>
+                        {addr.address1}
+                        <br/>
+                        {addr.address2}
+                        <br/>
+                        {addr.city}, {addr.country}
+                        <br/>
+                        {addr.zipCode}
+                        <br />
+                        <br />
+                        <br />
+                    </li>
+                   ))}
                </ul>
              ) : (
                <span className="text-gray-400 italic">
@@ -157,7 +191,12 @@ function ProfileCard() {
                </span>
              )
            }
-         />
+           />
+           <Link to='/add-address'>           
+            <button className='mt-8 bg-gray-600 text-white py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2'>
+              Add Address 
+            </button>
+           </Link>
        </div>
        {/* Edit Button */}
        <button className="mt-8 w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
