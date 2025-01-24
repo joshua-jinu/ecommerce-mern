@@ -7,6 +7,7 @@ import UpdateEntry from '../pages/updateEntry';
 import SingleProductPage from '../pages/SingleProductPage';
 import Cart from '../pages/Cart';
 import Profile from '../pages/Profile';
+import AddAddress from '../pages/AddAddress';
 
 function Router() {
   return (
@@ -19,6 +20,7 @@ function Router() {
       <Route path="/product-details/:id" element={<SingleProductPage/>}></Route>
       <Route path="/cart" element={<Cart/>}></Route>
       <Route path="/profile" element={<Profile/>}></Route>
+      <Route path='/add-address' element={<AddAddress/>}/>
     </Routes>
   )
 }
