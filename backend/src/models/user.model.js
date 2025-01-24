@@ -19,12 +19,14 @@ const userSchema = new mongoose.Schema({
         require: [true, "Enter the Country"]
     }, 
     address : [
-        {city: String}, 
-        {country: String}, 
-        {add1: String}, 
-        {add2: String}, 
-        {zipCode: String}, 
-        {addressType: String}
+        {
+            city: String, 
+            country: String, 
+            address1: String, 
+            address2: String, 
+            zipCode: String, 
+            addressType: String
+        }
     ],
     role: {type: String, default: 'user'},
     avatar: {

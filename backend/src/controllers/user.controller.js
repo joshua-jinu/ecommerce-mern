@@ -134,6 +134,7 @@ export const signup = async (req, res) => {
 }
 
 export const login = async (req, res)=>{
+    console.log(req.body);
     const {email, password} = req.body;
     try{
         const userExists = await User.findOne({email: email});
@@ -186,5 +187,60 @@ export const getUserData = async (req, res) =>{
     }catch (err) {
         console.log(err)
         return res.status(500).send({success: false, message: err.message});
+    }
+}
+
+export const addAddressController = async (req, res) =>{
+    const userId = req.UserId;
+    const {city, country, address1, address2, zipCode, addressType} = req.body;
+
+    try {
+        const userExists = await userModel.findOne({_id: userId});
+        if(!userExists)
+            return res.status(404).send({message:'User not found', success: false});
+
+        const userAddress = {
+            country,
+            city,
+            address1,
+            address2,
+            zipCode,
+            addressType
+        };
+
+        userExists.address.push(userAddress);
+        const response = await userExists.save();
+        
+        console.log('user address updated')
+        return res.status(201).send({message: "User address Added", success:true, response})
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).send({message:error.message, success: false});
+    }
+}
+
+export const deleteAddress = async (req, res) =>{
+    const userId = req.UserId;
+    const addressId = req.params.id;
+    try {  
+        if(!mongoose.Types.ObjectId.isValid(addressId)){
+            return res.status(404).send({message:'Invalid Address ID', success: false});
+        }
+        if(!mongoose.Types.ObjectId.isValid(userId)){
+            return res.status(404).send({message:'Invalid User ID', success: false});
+        }
+        const userExists = await userModel.findOne({_id: userId});
+        if(!userExists)
+            return res.status(404).send({message:'Un-authorized', success: false});
+        await userModel.findOneAndUpdate(
+            { _id: userId },
+            { $pull: { address: { _id: addressId } } },
+            { new: true }
+          );
+        console.log("address deleted");
+        return res.status(201).send({message: "User address deleted", success:true})
+    }catch(err){
+        console.log(err.message);
+        return res.status(500).send({message:err.message, success: false});
     }
 }

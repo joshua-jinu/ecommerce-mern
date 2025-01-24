@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createUser, fetchUsers, getUserData, login, signup, verifyUserController } from "../controllers/user.controller.js";
+import { createUser, fetchUsers, getUserData, login, signup, verifyUserController, addAddressController, deleteAddress } from "../controllers/user.controller.js";
 // import { upload } from "../middlewares/multer.js";
 import multer from "multer"
 import { verifyUser } from "../middlewares/jwtverify.js";
@@ -16,5 +16,8 @@ router.get("/authentication/:token", verifyUserController); //url to verify user
 
 router.post('/signup', upload.single('file'), signup);
 router.post('/login', login);
+
+router.post('/add-address', verifyUser, addAddressController);
+router.delete('/delete-address/:id', verifyUser, deleteAddress);
 
 export default router;
