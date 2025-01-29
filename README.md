@@ -139,3 +139,6 @@ mern-ecommerce/
     - updated address form to send data to backend api
     - created endpoint to handle address form data
     - created address deletion endpoint
+23. Milestone 23:
+    - added checkout from cart
+    - added select addresses page

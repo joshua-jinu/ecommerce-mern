@@ -8,6 +8,8 @@ import SingleProductPage from '../pages/SingleProductPage';
 import Cart from '../pages/Cart';
 import Profile from '../pages/Profile';
 import AddAddress from '../pages/AddAddress';
+import SelectAddress from '../pages/SelectAddress';
+import OrderConfirmation from '../pages/OrderConfirmation';
 
 function Router() {
   return (
@@ -21,6 +23,8 @@ function Router() {
       <Route path="/cart" element={<Cart/>}></Route>
       <Route path="/profile" element={<Profile/>}></Route>
       <Route path='/add-address' element={<AddAddress/>}/>
+      <Route path='/select-address' element={<SelectAddress/>}/>
+      <Route path='/order-confirmation' element={<OrderConfirmation/>}/>
     </Routes>
   )
 }
