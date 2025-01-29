@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 function CartCard({
     title,
-    image,
+    images,
     description,
     originalPrice,
     discountedPrice,
@@ -19,7 +19,7 @@ function CartCard({
        <div className="relative w-64">
         <Link to={`/product/product-details/${id}`}>
             <img
-            src={image ? image : `/api/placeholder/256/320`}
+            src={typeof images == 'string' ? images : images[0]}
             alt="Product Image"
             className="rounded-lg object-cover"
             />
@@ -46,9 +46,9 @@ function CartCard({
 
          {/* Price Information */}
          <div className="mt-6 flex items-center gap-3">
-           <span className="text-2xl font-bold">₹{originalPrice}</span>
+           <span className="text-2xl font-bold">₹{discountedPrice}</span>
            <span className="text-gray-500 line-through">
-             ₹{discountedPrice}
+             ₹{originalPrice}
            </span>
            {/* <span className="text-red-500">
              {disPercentage <= 0 ? 0 : disPercentage}% OFF

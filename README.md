@@ -141,4 +141,9 @@ mern-ecommerce/
     - created address deletion endpoint
 23. Milestone 23:
     - added checkout from cart
+    - added get-addresess endpoint in cart
     - added select addresses page
+24. Milestone 24:
+    - added Order confirmation
+    - displayed products in order confirmation
+    - displayed selected address in order confirmation page using localStorage

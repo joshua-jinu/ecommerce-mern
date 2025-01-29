@@ -33,9 +33,9 @@ function Cart() {
                     return(<CartCard
                         title = {ele.productId.title}
                         key = {index}
-                        image = {ele.productId.images[0]}
+                        images={ele.productId.images[0]}
                         description = {ele.productId.description}
-                        originalPrice = {ele.productId.originalPrice}
+                        originalPrice = {ele.productId.price}
                         discountedPrice = {ele.productId.discountedPrice}
                         rating = {ele.productId.rating}
                         id={ele.productId._id}
