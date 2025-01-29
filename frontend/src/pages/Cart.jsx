@@ -33,7 +33,7 @@ function Cart() {
                     return(<CartCard
                         title = {ele.productId.title}
                         key = {index}
-                        image = {ele.productId.images[0]}
+                        images={ele.productId.images[0]}
                         description = {ele.productId.description}
                         originalPrice = {ele.productId.originalPrice}
                         discountedPrice = {ele.productId.discountedPrice}

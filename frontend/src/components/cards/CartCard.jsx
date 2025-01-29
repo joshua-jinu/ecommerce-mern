@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 function CartCard({
     title,
-    image,
+    images,
     description,
     originalPrice,
     discountedPrice,
@@ -19,7 +19,7 @@ function CartCard({
        <div className="relative w-64">
         <Link to={`/product/product-details/${id}`}>
             <img
-            src={image ? image : `/api/placeholder/256/320`}
+            src={typeof images == 'string' ? images : images[0]}
             alt="Product Image"
             className="rounded-lg object-cover"
             />
