@@ -35,7 +35,7 @@ function Cart() {
                         key = {index}
                         images={ele.productId.images[0]}
                         description = {ele.productId.description}
-                        originalPrice = {ele.productId.originalPrice}
+                        originalPrice = {ele.productId.price}
                         discountedPrice = {ele.productId.discountedPrice}
                         rating = {ele.productId.rating}
                         id={ele.productId._id}

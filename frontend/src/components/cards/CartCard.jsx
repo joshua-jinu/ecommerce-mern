@@ -46,9 +46,9 @@ function CartCard({
 
          {/* Price Information */}
          <div className="mt-6 flex items-center gap-3">
-           <span className="text-2xl font-bold">₹{originalPrice}</span>
+           <span className="text-2xl font-bold">₹{discountedPrice}</span>
            <span className="text-gray-500 line-through">
-             ₹{discountedPrice}
+             ₹{originalPrice}
            </span>
            {/* <span className="text-red-500">
              {disPercentage <= 0 ? 0 : disPercentage}% OFF

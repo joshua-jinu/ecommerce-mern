@@ -11,9 +11,11 @@ const AddressList = ({ addresses }) => {
      </div>
    );
  }
- const handleClickAddress = (addressId) => {
-   navigate('/order-confirmation');
- };
+  const handleClickAddress = (index) => {
+    const SingleAddress = addresses[index];
+    localStorage.setItem('address', JSON.stringify(SingleAddress));
+    navigate('/order-confirmation');
+  };
 
 
  return (
@@ -28,7 +30,7 @@ const AddressList = ({ addresses }) => {
            backgroundColor: 'white',
            boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
          }}
-         onClick={() => handleClickAddress(address._id)}
+         onClick={() => handleClickAddress(index)}
        >
          <div style={{ marginBottom: '8px' }}>
            <h3
