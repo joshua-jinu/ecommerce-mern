@@ -147,3 +147,7 @@ mern-ecommerce/
     - added Order confirmation
     - displayed products in order confirmation
     - displayed selected address in order confirmation page using localStorage
+25. Milestone 25:
+    - added backend endpoint to confirm order
+    - created order database
+    - created order router, model and controller
