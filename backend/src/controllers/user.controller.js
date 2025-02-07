@@ -8,7 +8,6 @@ import fs from "fs";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import userModel from "../models/user.model.js";
-import { userInfo } from "os";
 
 dotenv.config({
   path: "../config/.env",
@@ -232,7 +231,7 @@ export const getUserData = async (req, res) => {
 
 export const addAddressController = async (req, res) => {
   const userId = req.UserId;
-  const { city, country, address1, address2, zipCode, addressType } = req.body;
+  const { city, country, address1, address2, zipCode, type } = req.body;
 
   try {
     const userExists = await userModel.findOne({ _id: userId });
@@ -247,7 +246,7 @@ export const addAddressController = async (req, res) => {
       address1,
       address2,
       zipCode,
-      addressType,
+      addressType: type,
     };
 
     userExists.address.push(userAddress);

@@ -10,6 +10,7 @@ import Profile from '../pages/Profile';
 import AddAddress from '../pages/AddAddress';
 import SelectAddress from '../pages/SelectAddress';
 import OrderConfirmation from '../pages/OrderConfirmation';
+import OrderHistory from '../pages/OrderHistory';
 
 function Router() {
   return (
@@ -25,7 +26,7 @@ function Router() {
       <Route path='/add-address' element={<AddAddress/>}/>
       <Route path='/select-address' element={<SelectAddress/>}/>
       <Route path='/order-confirmation' element={<OrderConfirmation/>}/>
-      <Route path='/orders' element={<OrderConfirmation/>}/>
+      <Route path='/orders' element={<OrderHistory/>}/>
     </Routes>
   )
 }

@@ -157,3 +157,6 @@ mern-ecommerce/
     - added order confirmation page
     - modified backend endpoint to confirm order
     - created order history page
+28. Milestone 28:
+    - displayed orders in order history page
+    - created cancel order route

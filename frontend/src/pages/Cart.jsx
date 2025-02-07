@@ -24,26 +24,38 @@ function Cart() {
     }, [])
   return (
     <div className='flex justify-center flex-col items-center'>  
-        <Link to="/select-address">
-            <button className='bg-slate-600 bg-black text-white p-4 my-8 rounded-md'>Checkout</button>
-        </Link>
+        {(userCartData.length>0)&&
         <div>
-            {
-                userCartData?.map((ele, index)=>{
-                    return(<CartCard
-                        title = {ele.productId.title}
-                        key = {index}
-                        images={ele.productId.images[0]}
-                        description = {ele.productId.description}
-                        originalPrice = {ele.productId.price}
-                        discountedPrice = {ele.productId.discountedPrice}
-                        rating = {ele.productId.rating}
-                        id={ele.productId._id}
-                        createdBy={'createdBy'}
-                    />)
-                })
-            }
+            <Link to="/select-address">
+                <button className='bg-slate-600 bg-black text-white p-4 my-8 rounded-md'>Checkout</button>
+            </Link>
+        
+            <div>
+                {
+                    userCartData?.map((ele, index)=>{
+                        return(<CartCard
+                            title = {ele.productId.title}
+                            key = {index}
+                            images={ele.productId.images[0]}
+                            description = {ele.productId.description}
+                            originalPrice = {ele.productId.price}
+                            discountedPrice = {ele.productId.discountedPrice}
+                            rating = {ele.productId.rating}
+                            id={ele.productId._id}
+                            createdBy={'createdBy'}
+                        />)
+                    })
+                }
+            </div>
         </div>
+    
+        }:{
+            <div>
+                <h2 className='font-medium text-black font-semibold'>
+                    Cart is empty
+                </h2>
+            </div>
+        }
     </div>
   )
 }
