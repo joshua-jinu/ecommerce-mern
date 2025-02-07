@@ -1,41 +1,61 @@
-import React, { useEffect, useState } from 'react'
-import CartCard from '../components/cards/CartCard';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
+import CartCard from '../components/cards/CartCard';
 
 function OrderHistory() {
-    const [orderData, setOrderData] = useState();
+  const [OrderedData, SetOrderedData] = useState([]);
 
-    useEffect(()=>{
-        const fetchOrders = async () =>{
-            const token = localStorage.getItem('token');
-            if(!token){
-                console.log("Please log in, token not present")
-            }
-            const res = await axios.get(`http://localhost:8080/user-orders-data?token=${token}`)
-            console.log(res?.data?.orders)
-            setOrderData(res?.data?.orders)
-        }
-        fetchOrders();
-    }, [])
 
+  const fetchedOrderedProducts = async () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return alert('Token not present, log in again');
+    }
+    const response = await axios.get(
+      `http://localhost:8080/order/user-orders-data?token=${token}`
+    );
+    const reversedData = response.data.orders?.reverse();
+
+    console.log(response.data.orders);
+    SetOrderedData(reversedData);
+  };
+  useEffect(() => {
+    fetchedOrderedProducts();
+  }, []);
+
+  const handleCancel = async (id) => {
+    console.log(id);
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return alert('Token is missing , Please login');
+    }
+    await axios.patch(
+      `http://localhost:8080/order/cancel-order?token=${token}&orderId=${id}`
+    );
+    console.log("cancelled");
+    fetchedOrderedProducts();
+  };
   return (
     <div>
-        {orderData?.map((ele, index)=>{
-          <CartCard
-              title = {ele.productId.title}
-            key = {index}
-            images={ele.productId.images[0]}
-            description = {ele.productId.description}
-            originalPrice = {ele.productId.price}
-            discountedPrice = {ele.productId.discountedPrice}
-            rating = {ele.productId.rating}
-            id={ele.productId._id}
-            orderStatus={ele.orderStatus}
-            createdBy={'createdBy'}
-          />
-        })}
+      {OrderedData?.map((singleCartObject, index) => {
+        return (
+          <div key={index}>
+            <CartCard
+              title={singleCartObject.orderItems.title}
+              images={singleCartObject.orderItems.images[0]}
+              description={singleCartObject.orderItems.description}
+              originalPrice={singleCartObject.orderItems.originalPrice}
+              discountedPrice={singleCartObject.orderItems.discountedPrice}
+              id={singleCartObject._id}
+              orderStatus={singleCartObject.orderStatus}
+              createdBy={'nayan@k.com'}
+              handleCancel={handleCancel}
+            />
+          </div>
+        );
+      })}
     </div>
-  )
+  );
 }
 
-export default OrderHistory
+export default OrderHistory;

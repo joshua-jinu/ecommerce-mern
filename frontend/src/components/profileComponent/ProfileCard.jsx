@@ -40,6 +40,7 @@ function ProfileCard() {
 
 
      setUserData(response.data.message);
+     console.log(response.data.message.address)
    };
    getUserData();
  }, []);

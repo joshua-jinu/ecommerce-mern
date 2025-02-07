@@ -39,12 +39,13 @@ export default function OrderConfirmation() {
     if(!token){
       return alert('Token is missing, please signup');
     }
-    const res = await axios.post("http://localhost:8080/order/confirm-order", {
+    console.log(cartData)
+    const res = await axios.post(`http://localhost:8080/order/confirm-order?token=${token}`, {
       items: cartData,
       address: userAddress,
       totalAmount: total,
     })
-    navigator("/order-history")
+    navigator("/orders")
     console.log(res)
   }
 

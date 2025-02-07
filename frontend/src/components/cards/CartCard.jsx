@@ -11,13 +11,14 @@ function CartCard({
     rating,
     id,
     createdBy,
-    orderStatus
+    orderStatus,
+    handleCancel
 }) {
+
   return (
     <div className="max-w-4xl mx-auto bg-white rounded-lg shadow p-4">
      <div className="flex gap-6">
 
-      {orderStatus&& <p>{orderStatus}<p> }
        {/* Product Image */}
        <div className="relative w-64">
         <Link to={`/product/product-details/${id}`}>
@@ -32,13 +33,27 @@ function CartCard({
 
        {/* Product Details */}
        <div className="flex-1">
+        {
+          orderStatus&& 
+            <span className={`px-3 py-1 rounded-full text-sm ${
+              orderStatus ==='Cancelled'?
+              'bg-red-100 text-red-900':
+              orderStatus === 'Delivered'
+              ? 'bg-green-100 text-green-800': 
+              orderStatus === 'Shipped'
+              ? 'bg-blue-100 text-blue-800': 
+              'bg-yellow-100 text-yellow-800'
+            }`}>
+              {orderStatus}
+            </span> 
+          }
          <div className="flex justify-between items-start">
            <div>
              <h2 className="text-xl font-semibold text-gray-800">{title}</h2>
              <p className="text-lg text-gray-600">{description}</p>
              <p className="text-gray-500 mt-1">Sold by: {createdBy}</p>
            </div>
-           <button className="text-gray-500 hover:text-gray-700">
+           <button className="text-gray-500 hover:text-gray-700" onClick={handleCancel?()=>{handleCancel(id)}:()=>{}}>
              <X className="w-6 h-6" />
            </button>
          </div>
@@ -70,4 +85,4 @@ function CartCard({
   )
 }
 
-export default CartCard
+export default CartCard;
