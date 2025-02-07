@@ -153,3 +153,7 @@ mern-ecommerce/
     - created order router, model and controller
 26. Milestone 26:
     - added /user-order-details backend route and controller to fetch the orders of the user
+27. Milestone 27:
+    - added order confirmation page
+    - modified backend endpoint to confirm order
+    - created order history page
