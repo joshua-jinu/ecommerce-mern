@@ -25,6 +25,7 @@ function Router() {
       <Route path='/add-address' element={<AddAddress/>}/>
       <Route path='/select-address' element={<SelectAddress/>}/>
       <Route path='/order-confirmation' element={<OrderConfirmation/>}/>
+      <Route path='/orders' element={<OrderConfirmation/>}/>
     </Routes>
   )
 }

@@ -10,11 +10,14 @@ function CartCard({
     discountedPrice,
     rating,
     id,
-    createdBy
+    createdBy,
+    orderStatus
 }) {
   return (
     <div className="max-w-4xl mx-auto bg-white rounded-lg shadow p-4">
      <div className="flex gap-6">
+
+      {orderStatus&& <p>{orderStatus}<p> }
        {/* Product Image */}
        <div className="relative w-64">
         <Link to={`/product/product-details/${id}`}>
