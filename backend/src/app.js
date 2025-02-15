@@ -6,6 +6,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import cartHandler from "./routes/cart.route.js";
 import orderHandler from "./routes/order.routes.js";
+import paymentRouter from "./routes/payment.route.js";
 
 if (process.env.NODE_ENV !== "PRODUCTION") {
   dotenv.config({
@@ -30,4 +31,5 @@ app.use("/user", userHandler);
 app.use("/product", productHandler);
 app.use("/cart", cartHandler);
 app.use("/order", orderHandler);
+app.use("/payment", paymentRouter);
 app.use(cookieParser());
