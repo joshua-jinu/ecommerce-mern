@@ -160,5 +160,11 @@ mern-ecommerce/
 28. Milestone 28:
     - displayed orders in order history page
     - created cancel order route
-29. Milestone 29 & 30:
-    - integrated razorpay payment gateway
+29. Milestone 29:
+    - created razorpay payment gateway backend endpoints
+30. Milestone 30:
+    - integrated razorpay payment gateway in frontend
+31. Milestone 31:
+    - added redux
+32. Milestone 32:
+    - accessed redux user state in each page
