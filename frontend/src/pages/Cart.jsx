@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import CartCard from '../components/cards/CartCard';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function Cart() {
 
     const [userCartData, setUserCartData] = useState([]);
+    const data = useSelector((state) => state.user);
     
     useEffect(()=>{
         const getData = async () =>{

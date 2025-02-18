@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
 
 const Card = ({ children, className = '' }) => (
  <div className={`bg-white rounded-lg shadow-lg p-6 ${className}`}>
@@ -27,6 +27,7 @@ const InfoSection = ({ icon, label, value }) => (
 
 function ProfileCard() {
  const [userData, setUserData] = useState({});
+ const data = useSelector((state) => state.user);
 
  useEffect(() => {
    const getUserData = async () => {
@@ -164,7 +165,7 @@ function ProfileCard() {
              userData?.address?.length > 0 ? (
                <ul className="list-disc list-inside">
                  {userData.address.map((addr, index) => (
-                     <li key={index}>
+                     <div key={index}>
                         <button 
                           className='mt-8 bg-gray-600 text-white py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2'
                           onClick={()=>{handleDeleteAddress(addr._id)}}
@@ -183,7 +184,7 @@ function ProfileCard() {
                         <br />
                         <br />
                         <br />
-                    </li>
+                    </div>
                    ))}
                </ul>
              ) : (

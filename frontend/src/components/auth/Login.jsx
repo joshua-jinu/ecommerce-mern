@@ -16,7 +16,7 @@ function Login() {
     try {
       const res = await axios.post('http://localhost:8080/user/login', data);
       localStorage.setItem('token', res.data.token);
-      dispatch(setUserEmail(data.email))
+      dispatch(setUserEmail(data.email));
       navigate('/');
     } catch (error) {
       console.log(error.message);

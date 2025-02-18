@@ -14,7 +14,6 @@ dotenv.config({
 });
 
 const generateToken = (data) => {
-  console.log(process.env.API_SECRET_KEY);
   const token = jwt.sign(
     {
       name: data.name,
@@ -167,7 +166,6 @@ export const signup = async (req, res) => {
 };
 
 export const login = async (req, res) => {
-  console.log(req.body);
   const { email, password } = req.body;
   try {
     const userExists = await User.findOne({ email: email });

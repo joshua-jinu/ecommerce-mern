@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 import Card from '../components/cards/Card'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function Home() {
     const [products, setData] = useState([]);
+    const dataRedux = useSelector((state) => state.user);
  
     useEffect(()=>{
         const fetchProducts = async () =>{
