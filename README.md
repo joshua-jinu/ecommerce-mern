@@ -168,3 +168,5 @@ mern-ecommerce/
     - added redux
 32. Milestone 32:
     - accessed redux user state in each page
+33. Milestone 33:
+    - set access token in cookies with httpOnly Secure flags for improved security
