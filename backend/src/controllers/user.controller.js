@@ -88,7 +88,11 @@ export const verifyUserController = async (req, res) => {
       //stores the token in the cookie
       return res
         .status(200)
-        .cookie("token", token)
+        .cookie("token", token, {
+          httpOnly: true,
+          secure: true,
+          sameSite: "Strict",
+        })
         .json({ token, success: true });
     }
     return res.status(403).send({ message: "token expired" });
@@ -186,11 +190,18 @@ export const login = async (req, res) => {
       };
 
       const token = generateToken(data);
-      return res.status(200).cookie("token", token).send({
-        success: true,
-        message: "User logged in successfully..",
-        token,
-      });
+      return res
+        .status(200)
+        .cookie("token", token, {
+          httpOnly: true,
+          secure: true,
+          sameSite: "Strict",
+        })
+        .send({
+          success: true,
+          message: "User logged in successfully..",
+          token,
+        });
     });
   } catch (err) {
     console.log(err);
