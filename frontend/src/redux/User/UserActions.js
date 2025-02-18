@@ -1,5 +1,6 @@
-import { setEmail } from "./UserSlice";
+import { setEmail } from "./UserSlice.js";
 
-export const setUserEmail = async (email) => (dispatch) => {
-  setEmail(email);
+export const setUserEmail = (email) => (dispatch) => {
+  dispatch(setEmail(email));
+  return;
 };

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function ProductEntry() {
   const navigator = useNavigate();
@@ -15,6 +16,7 @@ function ProductEntry() {
   });
   const [error, setError] = useState("");
   const [images, setImages] = useState(null);
+  const data = useSelector((state) => state.user);
 
   const handleImageUpload = (e) => {
     const imageArray = Array.from(e.target.files);

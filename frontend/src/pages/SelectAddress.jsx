@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import AddressList from '../components/addressComponent/addressList';
+import { useSelector } from 'react-redux';
 
 function SelectAddress() {
     const [addresses, setAddresses] = useState([]);
+    const data = useSelector((state) => state.user);
     useEffect(()=>{
         const fetchAddresses = async () =>{
             const token = localStorage.getItem('token');

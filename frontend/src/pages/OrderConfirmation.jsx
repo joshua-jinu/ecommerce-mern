@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import CartCard from '../components/cards/CartCard';
 import { useNavigate } from 'react-router-dom';
 import { handlePay } from '../utils/Razorpay';
+import { useSelector } from 'react-redux';
 
 
 export default function OrderConfirmation() {
@@ -12,6 +13,7 @@ export default function OrderConfirmation() {
     JSON.parse(localStorage.getItem('address')) || {}
   );
   const navigator = useNavigate();
+  const data = useSelector((state) => state.user);
   // totoal
   // address
   // cart data
