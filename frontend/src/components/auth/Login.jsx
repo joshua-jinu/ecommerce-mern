@@ -2,9 +2,12 @@ import React from 'react'
 import {NavLink, useNavigate} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setUserEmail } from '../../redux/User/UserActions';
 
 function Login() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const {register, reset, handleSubmit, formState} = useForm();
   const {errors} = formState;
@@ -13,6 +16,7 @@ function Login() {
     try {
       const res = await axios.post('http://localhost:8080/user/login', data);
       localStorage.setItem('token', res.data.token);
+      dispatch(setUserEmail(data.email))
       navigate('/');
     } catch (error) {
       console.log(error.message);
