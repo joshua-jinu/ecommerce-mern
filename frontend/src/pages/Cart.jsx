@@ -16,7 +16,7 @@ function Cart() {
                 return alert('please log in');
             }
 
-            const res = await axios.get(`http://localhost:8080/cart/get-user-cart-data?token=${token}`);
+            const res = await axios.get(`${import.meta.env.BACKEND_URL}/cart/get-user-cart-data?token=${token}`);
             console.log(res.data);
             console.log(res.data.certData)
             setUserCartData(res.data.cartData);

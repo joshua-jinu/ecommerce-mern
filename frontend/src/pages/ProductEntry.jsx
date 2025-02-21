@@ -86,7 +86,7 @@ function ProductEntry() {
         }
     }
 
-    axios.post(`http://localhost:8080/product/create-product?${token}`, formDataBody, {
+    axios.post(`${import.meta.env.BACKEND_URL}/product/create-product?${token}`, formDataBody, {
       headers: {
         "Content-Type": "multipart/form-data",
       },

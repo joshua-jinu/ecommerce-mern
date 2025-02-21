@@ -24,7 +24,7 @@ export default function OrderConfirmation() {
         return alert('Token is missing , Please login');
       }
       const response = await axios.get(
-        `http://localhost:8080/cart/get-user-cart-data?token=${token}`
+        `${import.meta.env.BACKEND_URL}/cart/get-user-cart-data?token=${token}`
       );
       let sum = 0;
       console.log(response.data.cartData)

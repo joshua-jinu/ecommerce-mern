@@ -14,7 +14,7 @@ function OrderHistory() {
       return alert('Token not present, log in again');
     }
     const response = await axios.get(
-      `http://localhost:8080/order/user-orders-data?token=${token}`
+      `${import.meta.env.BACKEND_URL}/order/user-orders-data?token=${token}`
     );
     const reversedData = response.data.orders?.reverse();
 

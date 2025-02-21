@@ -10,7 +10,7 @@ function Home() {
  
     useEffect(()=>{
         const fetchProducts = async () =>{
-            const res = await axios.get("http://localhost:8080/product/get-products")
+            const res = await axios.get(`${import.meta.env.BACKEND_URL}/product/get-products`)
             setData(res.data.data);
         }        
         fetchProducts();
@@ -19,7 +19,7 @@ function Home() {
 
     const handleDelete = async (id) =>{
         try {
-            const data = await axios.delete(`http://localhost:8080/product/${id}`);
+            const data = await axios.delete(`${import.meta.env.BACKEND_URL}/product/${id}`);
             setData(data.data.data);
         } catch (error) {
             console.log(error);

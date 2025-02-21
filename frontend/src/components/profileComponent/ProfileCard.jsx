@@ -36,7 +36,7 @@ function ProfileCard() {
        return alert('Token missing login');
      }
      const response = await axios.get(
-       `http://localhost:8080/user/user-data?token=${token}`
+       `${import.meta.env.BACKEND_URL}/user/user-data?token=${token}`
      );
 
 
@@ -53,7 +53,7 @@ function ProfileCard() {
       console.log('token not present')
     }
 
-    const res =await  axios.delete(`http://localhost:8080/user/delete-address/${id}?token=${token}`);
+    const res =await  axios.delete(`${import.meta.env.BACKEND_URL}/user/delete-address/${id}?token=${token}`);
     console.log("address deleted",res);
   } catch (error) {
     console.log(error.message);
