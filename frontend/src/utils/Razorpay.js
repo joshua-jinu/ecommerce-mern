@@ -2,7 +2,7 @@ import axios from "axios";
 export const handlePay = async (total, token, orderIds) => {
   try {
     const createOrdersResponse = await axios.post(
-      "http://localhost:8080/payment/create-order",
+      `${import.meta.env.BACKEND_URL}/payment/create-order`,
       {
         amount: total,
         currency: "INR",
@@ -13,7 +13,7 @@ export const handlePay = async (total, token, orderIds) => {
     // get the keys
     // key_id and key_secret
     const responseKeys = await axios.get(
-      "http://localhost:8080/payment/get-razorpay-key"
+      `${import.meta.env.BACKEND_URL}/payment/get-razorpay-key`
     );
     // pay order
     // make the payment and create a document

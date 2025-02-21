@@ -14,7 +14,7 @@ function Login() {
 
   const onSubmit = async (data) =>{
     try {
-      const res = await axios.post('http://localhost:8080/user/login', data);
+      const res = await axios.post(`${import.meta.env.BACKEND_URL}/user/login`, data);
       localStorage.setItem('token', res.data.token);
       dispatch(setUserEmail(data.email));
       navigate('/');

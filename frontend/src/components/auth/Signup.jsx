@@ -54,7 +54,7 @@ function Signup() {
 
     console.log(data.file)
     try {
-      await axios.post('http://localhost:8080/user/signup', formDataBody, {
+      await axios.post(`${import.meta.env.BACKEND_URL}/user/signup`, formDataBody, {
         headers: {
           'Content-Type':'multipart/form-data',
         }

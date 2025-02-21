@@ -170,3 +170,7 @@ mern-ecommerce/
     - accessed redux user state in each page
 33. Milestone 33:
     - set access token in cookies with httpOnly Secure flags for improved security
+34. Milestone 34:
+    - Set JWT token in secure httpOnly cookie.
+35. Milestone 35:
+    - Deployment of backend and frontend.

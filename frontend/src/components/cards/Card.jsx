@@ -7,7 +7,7 @@ function Card({title, sp, mrp, url, id, handleDelete}) {
     const handleAddToCart = async () =>{
         const token = localStorage.getItem('token');
         try {
-            await axios.post(`http://localhost:8080/cart/add-to-cart?token=${token}`, {productId: id, quantity: 1})
+            await axios.post(`${import.meta.env.BACKEND_URL}/cart/add-to-cart?token=${token}`, {productId: id, quantity: 1})
         } catch (error) {
             console.log(error.message);
         }

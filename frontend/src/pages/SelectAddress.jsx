@@ -12,7 +12,7 @@ function SelectAddress() {
             if(!token){
                 alert('token missing please login again');
             }
-            const res = await axios.get(`http://localhost:8080/user/get-addresses?token=${token}`);
+            const res = await axios.get(`${import.meta.env.BACKEND_URL}/user/get-addresses?token=${token}`);
             console.log(res);
             setAddresses(res.data.userInfo.address)
         }
